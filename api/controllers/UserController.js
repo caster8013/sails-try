@@ -62,9 +62,6 @@ module.exports = {
 
   index: (req, res, next) => {
 
-    console.log(new Date());
-    console.log(req.session.authenticated);
-
     User.find({})
       .then((users) => {
         res.view({
