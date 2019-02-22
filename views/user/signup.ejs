@@ -3,6 +3,17 @@
 <% block('localStyles', '<link rel="stylesheet" href="/styles/local/customed.css">') %>
 
 <form action="/user/create" id="parsley" method="POST" class="form-signin">
+
+  <% if(flash && flash.err) { %> 
+    <ul class = "alert alert-success">
+    <% Object.keys(flash.err).forEach(function(key) { %> 
+    <li>
+    <%= JSON.stringify(flash.err[key]) %> 
+    </li>
+    <% }) %> 
+    </ul>
+  <% } %>
+
   <div class="row form-group">
     <div class="col-md-6 col-sm-6 col-xs-6">
       <label for="name">Name</label>
@@ -26,7 +37,7 @@
     <label for="confirmation">Confirmation</label>
     <input type="password" class="form-control stored" data-parsley-length="[6, 32]" data-parsley-equalto="#password" id="confirmation" name="confirmation" placeholder="Confirmation">
   </div>
-
+  
   <button type="submit" class="btn btn-primary" id="submit">Submit</button>
   <input type="hidden" name="_csrf" value="<%= _csrf %>" />
 </form>

@@ -48,6 +48,14 @@ module.exports = {
         console.log(request.url);
         console.log(request.user);
         response.send("page3");
+    },
+    index: (req, res) => {
+        // res.view('homepage');
+        if(typeof a === undefined) {
+            console.log("a in undefined")
+        }
+        else 
+            res.send("homepage!");
     }
 
 };

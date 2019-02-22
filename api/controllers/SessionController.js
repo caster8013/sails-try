@@ -52,7 +52,13 @@ module.exports = {
             req.session.authenticated = true;
             req.session.User = user;
 
-            res.redirect('/user/show/' + user.id);
+            if (req.session.User.admin) {
+              res.redirect('/user');  //redirect to /user/index page
+            } else {
+              res.redirect('/user/show/' + user.id);
+            }
+
+            return;
           });
         });
     },

@@ -26,11 +26,16 @@ module.exports.policies = {
   
   '*': ['accessLog'],
 
-  UserController: ['flash'],
+  // UserController: ['admin'],
 
   user: {
-    'new': 'flash',
-    // '*': 'authenticated'
+    'show': ['authenticated'],
+    'index': ['authenticated', 'admin'],
+    'edit': ['authenticated', 'admin', 'accessToProfile'],
+    'update': ['authenticated', 'admin', 'accessToProfile'],
+    'delete': ['authenticated', 'admin', 'accessToProfile'],
+    'signup': ['flash'],
+    'create': true
   },
 
   SessionController: {

@@ -13,4 +13,4 @@ module.exports = (req, res, next) => {
         res.redirect('/session/new');
         return;
     }
-}
+};

@@ -24,6 +24,10 @@ module.exports = {
       required: true,
       unique: true
     },
+    admin: {
+      type: 'boolean',
+      defaultsto: false
+    },
     password: {
       type: 'string'
     },
@@ -35,6 +39,18 @@ module.exports = {
       return _.omit(this, ['password', 'confirmation', '_csrf'])
     }
 
+  },
+
+  beforeValidate: (values, next) => {
+
+    if(typeof values.admin !== 'undefined') {
+      if (values.admin === 'unchecked') {
+        values.admin = false;
+      } else if (values.admin[1] === 'on')
+        values.admin = true;
+    }
+
+    next();
   },
 
   beforeCreate: (values, next) => {

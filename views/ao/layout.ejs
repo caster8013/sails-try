@@ -47,8 +47,15 @@
       <ul class="navbar-nav mr-auto">
         <% if (session.authenticated) { %> 
           <li class="nav-item active">
-            <a class="nav-link" href="/user/show/<%= session.User.id %>"><%= session.User.name %></a>
+            <a class="nav-link" href="/user/show/<%= session.User.id %>" style="display:inline"><%= session.User.name %></a>
+            <% if (session.authenticated && session.User.admin ) { %>
+              <img src="/images/admin.png" height="20" width="20" alt="amdin" style="display:inline">
+            <% } else { %>  
+              <img src="/images/user.png" height="20" width="20" alt="user" style="display:inline">
+            <% } %> 
           </li> 
+        <% } %> 
+        <% if (session.authenticated && session.User.admin ) { %> 
           <li class = "nav-item active" >
             <a class="nav-link" href="/user/index">Users Index</a>
           </li>
